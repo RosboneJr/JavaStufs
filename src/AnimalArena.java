@@ -6,13 +6,17 @@ public class AnimalArena {
     public static final int MAXSTRENGTH = 10;
     public static final int MILLIDELAY = 500;
     public static void main(String[] args) {
+        int startingHealth = (rand.nextInt(MAXHEALTH/2) + 1) + 10;
+        int startingStrength = rand.nextInt(MAXSTRENGTH) + 1;
         Animal BiliApe = creAnimalWithDefaultConstructor("BiliApe");
         Animal Sloth = creAnimalWithParameterizedConstructor("Sloth");
+        Animal MONKE = new Mammal("MONKE", startingStrength, startingHealth);
+        System.out.println(ConsoleColors.RED+"its animal arena baby!" + ConsoleColors.RESET);
         System.out.println(BiliApe);
         System.out.println(Sloth);
         System.out.println("It's " + BiliApe.getType() + " vs " + Sloth.getType() + "!");
         System.out.println("FIGHT!");
-        fight(BiliApe, Sloth);
+        fight(BiliApe, MONKE);
     }
     public static Animal creAnimalWithDefaultConstructor(String type){
         Animal a = new Animal();
@@ -43,10 +47,15 @@ public class AnimalArena {
         }
     }
     public static void AnimalAttack(Animal attacker, Animal defender){
-        int attack = rand.nextInt(attacker.getStrength());
-        System.out.println(attacker.getType() + " attack " + defender.getType() + " delivering " + attack + " damage!");
+        int attack;
+        if (attacker instanceof Mammal){
+            AnimalAttack a = ((Mammal) attacker).detailedAttack();
+            attack = a.getDamage();
+            System.out.println(ConsoleColors.GREEN + attacker.getType() + " attacks with " + a.getAttacktype() + " for " + attack + " damage " + ConsoleColors.RESET);
+        }
+        System.out.println(attacker.getType() + " attack " + defender.getType() + " delivering "  + " damage!");
         pause(MILLIDELAY);
-        defender.setHealth(defender.getHealth() - attack);
+        defender.setHealth(defender.getHealth() );
         System.out.println(defender.getType() + " has " + defender.getHealth() + " remaining");
         pause(MILLIDELAY);
     }

@@ -1,4 +1,8 @@
+import java.util.Random;
+
 public class Animal {
+    public static Random rand = new Random();
+
     private String type;
     private int strength;
     private int health;
@@ -50,6 +54,11 @@ public class Animal {
     public boolean isDead(){
         return  health <=0;
     }
+    public int attack(){
+        return rand.nextInt(getStrength()+1);
+
+    }
+
     @Override
     public String toString(){
         return "Type: "+ type + "; Strength " + strength + "; Health " + health;
