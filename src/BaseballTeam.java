@@ -1,7 +1,18 @@
 public class BaseballTeam {
+    private int ischeater = 0;
+
+    public int getIscheater() {
+        return ischeater;
+    }
+
     private String name;
-    private int gamesWon;
-    private int gamesLost;
+    private int gamesWon =0;
+    private int gamesLost =0;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
 
     public String getName() {
         return name;
@@ -27,10 +38,10 @@ public class BaseballTeam {
         this.gamesLost = gamesLost;
     }
 
-    public BaseballTeam(String name, int gamesWon, int gamesLost) {
+    public BaseballTeam(String name,  String color) {
         this.name = name;
-        this.gamesWon = gamesWon;
-        this.gamesLost = gamesLost;
+
+        this.color = color;
     }
     public void winGame(){
         this.gamesWon += 1;
